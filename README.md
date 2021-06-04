@@ -1,1 +1,1 @@
-# jap-hibernate
+# jpa-hibernate
