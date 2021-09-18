@@ -30,11 +30,18 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
+    @ManyToOne
+    @JoinColumn(name = "delivery_ID")
+    private Delivery delivery;
     private LocalDateTime orderDate;
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
     @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems = new ArrayList<>();
+    private List<OrderItem> orderItems;
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
+    }
 
     @Builder
     public Order(Member member, LocalDateTime orderDate, OrderStatus status) {

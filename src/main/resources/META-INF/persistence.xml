@@ -10,6 +10,7 @@
 <!--        <class>io.ggammu.study.jpa.OrderItem</class>-->
         <class>io.ggammu.study.jpa.Item</class>
         <class>io.ggammu.study.jpa.Locker</class>
+        <class>io.ggammu.study.jpa.Delivery</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa"/>
@@ -20,7 +21,7 @@
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
         </properties>
     </persistence-unit>
 </persistence>
