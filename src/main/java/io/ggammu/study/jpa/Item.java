@@ -1,5 +1,7 @@
 package io.ggammu.study.jpa;
 
+import java.util.List;
+import javax.persistence.ManyToMany;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +22,8 @@ public class Item {
     private String name;
     private int price;
     private int stockQuantity;
+    @ManyToMany
+    private List<Category> categories;
 
     @Builder
     public Item(String name, int price, int stockQuantity) {

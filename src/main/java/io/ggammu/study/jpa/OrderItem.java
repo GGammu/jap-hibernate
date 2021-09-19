@@ -1,5 +1,7 @@
 package io.ggammu.study.jpa;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Table;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,16 +14,18 @@ import javax.persistence.ManyToOne;
 
 @Getter
 @NoArgsConstructor
+@Table(name = "ORDER_ITEM")
 @Entity
 public class OrderItem {
     @Id
-    @Column(name = "order_item_id")
+    @GeneratedValue
+    @Column(name = "ORDER_ITEM_ID")
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "ORDER_ID")
     private Order order;
     @ManyToOne
-    @JoinColumn(name = "item_id")
+    @JoinColumn(name = "ITEM_ID")
     private Item item;
     private Long orderPrice;
     private int count;
@@ -30,13 +34,5 @@ public class OrderItem {
     public OrderItem(Long orderprice, int count) {
         this.orderPrice = orderprice;
         this.count = count;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
     }
 }

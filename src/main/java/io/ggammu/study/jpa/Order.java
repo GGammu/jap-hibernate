@@ -20,22 +20,27 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
+@Table(name = "ORDERS")
 @Entity
-@Table(name = "Orders")
 public class Order {
     @Id
     @GeneratedValue
-    @Column(name = "order_id")
+    @Column(name = "ORDER_ID")
     private Long id;
+
     @ManyToOne
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
+
     @ManyToOne
-    @JoinColumn(name = "delivery_ID")
+    @JoinColumn(name = "DELIVERY_ID")
     private Delivery delivery;
+
     private LocalDateTime orderDate;
+
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;
 
@@ -48,10 +53,5 @@ public class Order {
         this.member = member;
         this.orderDate = orderDate;
         this.status = status;
-    }
-
-    public void addOrderItem(OrderItem orderItem) {
-        orderItems.add(orderItem);
-        orderItem.setOrder(this);
     }
 }
