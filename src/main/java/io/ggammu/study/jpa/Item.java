@@ -1,6 +1,8 @@
 package io.ggammu.study.jpa;
 
 import java.util.List;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,21 +16,15 @@ import javax.persistence.Id;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Item {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class Item extends BaseEntity {
     @Id
     @GeneratedValue
-    @Column(name = "item_id")
+    @Column(name = "ITEM_ID")
     private Long id;
     private String name;
     private int price;
     private int stockQuantity;
-    @ManyToMany
+    @ManyToMany(mappedBy = "items")
     private List<Category> categories;
-
-    @Builder
-    public Item(String name, int price, int stockQuantity) {
-        this.name = name;
-        this.price = price;
-        this.stockQuantity = stockQuantity;
-    }
 }

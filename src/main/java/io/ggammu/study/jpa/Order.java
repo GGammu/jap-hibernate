@@ -1,5 +1,6 @@
 package io.ggammu.study.jpa;
 
+import javax.persistence.OneToOne;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,7 +33,7 @@ public class Order {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "DELIVERY_ID")
     private Delivery delivery;
 

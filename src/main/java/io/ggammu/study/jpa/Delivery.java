@@ -16,10 +16,12 @@ public class Delivery {
     @GeneratedValue
     @Column(name = "DELIVERY_ID", nullable = false)
     private Long id;
+
     private String city;
     private String street;
     private String zipcode;
     private DeliveryStatus status;
-    @OneToOne(mappedBy = "order")
+
+    @OneToOne(mappedBy = "delivery")
     private Order order;
 }
