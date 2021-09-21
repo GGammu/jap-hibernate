@@ -10,14 +10,22 @@ public class JpaMain {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("io.ggammu.study.jpa");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
-//        tx.begin();
-//        try {
-//
-//        } catch (Exception e) {
-//            tx.rollback();
-//        } finally {
-//            em.close();
-//            emf.close();
-//        }
+        tx.begin();
+        try {
+            Member member = new Member();
+            member.setName("Hello");
+
+            em.persist(member);
+            System.out.println("persist");
+            em.flush();
+            System.out.println("flush");
+            em.clear();
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+        } finally {
+            em.close();
+            emf.close();
+        }
     }
 }
