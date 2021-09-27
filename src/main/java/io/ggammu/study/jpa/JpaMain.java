@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import org.hibernate.Hibernate;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -13,11 +14,12 @@ public class JpaMain {
         tx.begin();
         try {
             Member member1 = new Member();
-            member1.setName("Hello");
+            member1.setUsername("Hello");
             em.persist(member1);
 
             Member member2 = new Member();
-            member2.setName("Hello");
+            member2.setUsername("Hello");
+
             em.persist(member2);
 
             em.flush();
@@ -34,10 +36,11 @@ public class JpaMain {
             System.out.println("refMember1 " + refMember1.getClass());
 
 //            em.detach(refMember1);
-            em.clear();
+//            em.clear();
 //            em.close();
 
-            refMember1.getName();
+            Hibernate.initialize(refMember1);
+            System.out.println("is Loaded " + emf.getPersistenceUnitUtil().isLoaded(refMember1));
 
             tx.commit();
         } catch (Exception e) {
