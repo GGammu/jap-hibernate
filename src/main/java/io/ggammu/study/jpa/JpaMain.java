@@ -1,5 +1,6 @@
 package io.ggammu.study.jpa;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -17,6 +18,10 @@ public class JpaMain {
             team.setName("Team1");
             em.persist(team);
 
+            Team team2 = new Team();
+            team.setName("Team2");
+            em.persist(team);
+
             Member member1 = new Member();
             member1.setUsername("member1");
             member1.setTeam(team);
@@ -27,11 +32,9 @@ public class JpaMain {
 
             Member m = em.find(Member.class, member1.getId());
 
-            System.out.println("m = " + m.getTeam().getClass());
+            List<Member> members = em.createQuery("select m from Member m", Member.class)
+                            .getResultList();
 
-            System.out.println("============");
-            System.out.println(m.getTeam().getName());
-            System.out.println("============");
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
