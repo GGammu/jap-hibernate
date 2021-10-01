@@ -20,8 +20,16 @@ public class Parent {
     @Column(name = "NAME")
     private String name;
 
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Child> childs = new ArrayList<>();
+
+    public List<Child> getChilds() {
+        return childs;
+    }
+
+    public void setChilds(List<Child> childs) {
+        this.childs = childs;
+    }
 
     public void addChild(Child child) {
         childs.add(child);
