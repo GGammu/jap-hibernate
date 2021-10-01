@@ -16,6 +16,8 @@
         <class>io.ggammu.study.jpa.Album</class>
         <class>io.ggammu.study.jpa.Movie</class>
         <class>io.ggammu.study.jpa.Team</class>
+        <class>io.ggammu.study.jpa.Parent</class>
+        <class>io.ggammu.study.jpa.Child</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa"/>
