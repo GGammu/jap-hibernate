@@ -15,10 +15,20 @@ public class JpaMain {
         tx.begin();
 
         try {
+            Address address = Address.builder().city("city").street("street").zipCode("zip").build();
+
             Member member = new Member();
             member.setUsername("hello");
-            member.setAddress(Address.builder().city("city").street("street").zipCode("zip").build());
+            member.setAddress(address);
             em.persist(member);
+
+            Member member1 = new Member();
+            member1.setUsername("hello1");
+            member1.setAddress(address);
+            em.persist(member1);
+
+            member.getAddress().setCity("newCity");
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

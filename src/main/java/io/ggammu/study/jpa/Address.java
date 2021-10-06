@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+@Setter
 @Getter
 @NoArgsConstructor
 @Embeddable
