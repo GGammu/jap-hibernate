@@ -3,6 +3,8 @@ package io.ggammu.study.jpa;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -41,6 +43,14 @@ public class Member extends BaseEntity {
 
     @Embedded
     private Address address;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "city", column = @Column(name = "workCity")),
+            @AttributeOverride(name = "street", column = @Column(name = "workStreet")),
+            @AttributeOverride(name = "zipCode", column = @Column(name = "workZipCode")),
+    })
+    private Address workAddress;
 
     @OneToMany(mappedBy = "member")
     List<Order> orders = new ArrayList();

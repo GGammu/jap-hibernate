@@ -13,6 +13,7 @@ public class JpaMain {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
+
         try {
             Member member = new Member();
             member.setUsername("hello");
