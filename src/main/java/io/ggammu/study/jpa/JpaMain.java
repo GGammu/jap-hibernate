@@ -22,12 +22,10 @@ public class JpaMain {
             member.setAddress(address);
             em.persist(member);
 
-            Member member1 = new Member();
-            member1.setUsername("hello1");
-            member1.setAddress(address);
-            em.persist(member1);
+            // member.getAddress().setCity("newCity");
+            Address address1 = Address.builder().city("newCity").street(address.getStreet()).zipCode(address.getZipCode()).build();
 
-            member.getAddress().setCity("newCity");
+            member.setAddress(address1);
 
             tx.commit();
         } catch (Exception e) {
