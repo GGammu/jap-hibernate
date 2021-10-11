@@ -1,6 +1,7 @@
 package io.ggammu.study.jpa;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -18,9 +19,9 @@ public class Delivery {
     @Column(name = "DELIVERY_ID", nullable = false)
     private Long id;
 
-    private String city;
-    private String street;
-    private String zipcode;
+    @Embedded
+    private Address address;
+
     private DeliveryStatus status;
 
     @OneToOne(mappedBy = "delivery", fetch =  FetchType.LAZY)
