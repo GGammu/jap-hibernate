@@ -1,10 +1,14 @@
 package io.ggammu.study.jpa;
 
 import java.util.List;
+import java.util.concurrent.ForkJoinPool;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Hibernate;
 
 public class JpaMain {
@@ -15,17 +19,18 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Address address = Address.builder().city("city").street("street").zipCode("zip").build();
+            CriteriaBuilder cb = em.getCriteriaBuilder();
+            CriteriaQuery<Member> query = cb.createQuery(Member.class);
 
-            Member member = new Member();
-            member.setUsername("hello");
-            member.setAddress(address);
-            em.persist(member);
+            Root<Member> m = query.from(Member.class);
 
-            // member.getAddress().setCity("newCity");
-            Address address1 = Address.builder().city("newCity").street(address.getStreet()).zipCode(address.getZipCode()).build();
-
-            member.setAddress(address1);
+            List<Member> result = em.createQuery(
+                    "select m from Member m where m.username like '%kim%'",
+                    Member.class).getResultList();
+            for (Member member :
+                    result) {
+                System.out.println("member = " + member);
+            }
 
             tx.commit();
         } catch (Exception e) {
