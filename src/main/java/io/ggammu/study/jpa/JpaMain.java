@@ -19,19 +19,16 @@ public class JpaMain {
         tx.begin();
 
         try {
-            CriteriaBuilder cb = em.getCriteriaBuilder();
-            CriteriaQuery<Member> query = cb.createQuery(Member.class);
+            Member member = new Member();
+            member.setUsername("native");
+            em.persist(member);
 
-            Root<Member> m = query.from(Member.class);
+            String sql = "select * from MEMBER";
+            List<Member> result = em.createNativeQuery(sql, Member.class).getResultList();
 
-            List<Member> result = em.createQuery(
-                    "select m from Member m where m.username like '%kim%'",
-                    Member.class).getResultList();
-            for (Member member :
-                    result) {
-                System.out.println("member = " + member);
+            for (Member member1 : result) {
+                System.out.println(member1.getUsername());
             }
-
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
