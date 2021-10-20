@@ -6,18 +6,18 @@
 
     <persistence-unit name="io.ggammu.study.jpa">
         <class>io.ggammu.study.jpa.Member</class>
-        <class>io.ggammu.study.jpa.Order</class>
-        <class>io.ggammu.study.jpa.OrderItem</class>
-        <class>io.ggammu.study.jpa.Item</class>
-        <class>io.ggammu.study.jpa.Locker</class>
-        <class>io.ggammu.study.jpa.Delivery</class>
-        <class>io.ggammu.study.jpa.Category</class>
-        <class>io.ggammu.study.jpa.Book</class>
-        <class>io.ggammu.study.jpa.Album</class>
-        <class>io.ggammu.study.jpa.Movie</class>
+<!--        <class>io.ggammu.study.jpa.Order</class>-->
+<!--        <class>io.ggammu.study.jpa.OrderItem</class>-->
+<!--        <class>io.ggammu.study.jpa.Item</class>-->
+<!--        <class>io.ggammu.study.jpa.Locker</class>-->
+<!--        <class>io.ggammu.study.jpa.Delivery</class>-->
+<!--        <class>io.ggammu.study.jpa.Category</class>-->
+<!--        <class>io.ggammu.study.jpa.Book</class>-->
+<!--        <class>io.ggammu.study.jpa.Album</class>-->
+<!--        <class>io.ggammu.study.jpa.Movie</class>-->
         <class>io.ggammu.study.jpa.Team</class>
-        <class>io.ggammu.study.jpa.Parent</class>
-        <class>io.ggammu.study.jpa.Child</class>
+<!--        <class>io.ggammu.study.jpa.Parent</class>-->
+<!--        <class>io.ggammu.study.jpa.Child</class>-->
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpa"/>

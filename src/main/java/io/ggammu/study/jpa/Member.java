@@ -28,12 +28,17 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "MEMBER")
 @Entity
-public class Member extends BaseEntity {
+public class Member {
     @Id
     @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
     private String username;
 
     private int age;
+
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 }

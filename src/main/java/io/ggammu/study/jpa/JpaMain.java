@@ -19,16 +19,15 @@ public class JpaMain {
         tx.begin();
 
         try {
+            Team team = new Team();
+            team.setName("A");
+            em.persist(team);
+
             Member member = new Member();
             member.setUsername("native");
+            member.setTeam(team);
             em.persist(member);
 
-            String sql = "select * from MEMBER";
-            List<Member> result = em.createNativeQuery(sql, Member.class).getResultList();
-
-            for (Member member1 : result) {
-                System.out.println(member1.getUsername());
-            }
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
