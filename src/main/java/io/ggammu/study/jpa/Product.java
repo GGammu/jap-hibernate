@@ -16,7 +16,7 @@ public class Product {
     @Id
     @GeneratedValue
     @Column(name = "PRODUCT_ID")
-    private long id;
+    private Long id;
 
     private String name;
 
