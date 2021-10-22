@@ -11,13 +11,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
 @Getter
 @NoArgsConstructor
 @Entity
 public class Order {
     @Id
     @GeneratedValue
+    @Column(name = "ORDER_ID")
     private Long id;
 
     private int orderAmount;
