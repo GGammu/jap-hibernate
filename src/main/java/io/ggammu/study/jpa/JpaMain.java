@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -26,7 +27,12 @@ public class JpaMain {
             Member member = new Member();
             member.setUsername("native");
             member.setTeam(team);
+            member.setAge(10);
             em.persist(member);
+
+            TypedQuery<Member> query = em.createQuery("select m from Member m", Member.class);
+            query.getResultList();
+
 
             tx.commit();
         } catch (Exception e) {
