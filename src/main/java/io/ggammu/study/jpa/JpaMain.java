@@ -30,9 +30,13 @@ public class JpaMain {
             member.setAge(10);
             em.persist(member);
 
-            TypedQuery<Member> query = em.createQuery("select m from Member m", Member.class);
-            query.getResultList();
+            em.flush();
+            em.clear();
 
+            List<Member> members = em.createQuery("select m from Member m", Member.class).getResultList();
+
+            Member member1 = members.get(0);
+            member1.setAge(10);
 
             tx.commit();
         } catch (Exception e) {
