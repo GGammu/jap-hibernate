@@ -33,10 +33,11 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            List<Member> members = em.createQuery("select m from Member m", Member.class).getResultList();
+            List<MemberDto> members = em.createQuery("select new io.ggammu.study.jpa.MemberDto(m.username, m.age) from Member m", MemberDto.class).getResultList();
 
-            Member member1 = members.get(0);
-            member1.setAge(10);
+            MemberDto member1 = members.get(0);
+            System.out.println(member1.getName());
+            System.out.println(member1.getAge());
 
             tx.commit();
         } catch (Exception e) {
