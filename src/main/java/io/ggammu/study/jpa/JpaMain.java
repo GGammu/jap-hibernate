@@ -20,24 +20,22 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Team team = new Team();
-            team.setName("A");
-            em.persist(team);
-
-            Member member = new Member();
-            member.setUsername("native");
-            member.setTeam(team);
-            member.setAge(10);
-            em.persist(member);
+            for (int i = 0; i < 100; i++) {
+                Member member = new Member();
+                member.setUsername("test");
+                member.setAge(i);
+                em.persist(member);
+            }
 
             em.flush();
             em.clear();
 
-            List<MemberDto> members = em.createQuery("select new io.ggammu.study.jpa.MemberDto(m.username, m.age) from Member m", MemberDto.class).getResultList();
+            List<Member> resultList = em.createQuery("select  m from Member m order by m.age desc", Member.class)
+                            .setFirstResult(0)
+                            .setMaxResults(10)
+                            .getResultList();
 
-            MemberDto member1 = members.get(0);
-            System.out.println(member1.getName());
-            System.out.println(member1.getAge());
+            resultList.forEach(m -> System.out.println(m.toString()));
 
             tx.commit();
         } catch (Exception e) {
