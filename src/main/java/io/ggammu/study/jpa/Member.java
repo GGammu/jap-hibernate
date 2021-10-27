@@ -41,6 +41,15 @@ public class Member {
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
+    public void changeTeam(Team team) {
+        this.team.getMembers().add(this);
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+        changeTeam(team);
+    }
+
     @Override
     public String toString() {
         return "Member{" +
