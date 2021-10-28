@@ -27,6 +27,7 @@ public class JpaMain {
             Member member = new Member();
             member.setUsername("member 1");
             member.setAge(10);
+            member.setType(MemberType.ADMIN);
 
             member.setTeam(team);
 
@@ -40,7 +41,7 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query = "select m from Member m left outer join Team t on m.username = t.name";
+            String query = "select m from Member m where m.type = io.ggammu.study.jpa.MemberType.ADMIN";
             List<Member> resultList = em.createQuery(query, Member.class)
                             .getResultList();
 
