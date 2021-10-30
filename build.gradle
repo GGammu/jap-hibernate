@@ -16,8 +16,14 @@ dependencies {
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
 
+    // h2
+    implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+
     // mysql
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.24'
+
+    // h2
+    testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
 
     // test
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
