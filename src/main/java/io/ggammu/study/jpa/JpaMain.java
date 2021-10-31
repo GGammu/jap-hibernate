@@ -35,8 +35,8 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query = "select m.username from Member m";
-            List<Integer> resultList = em.createQuery(query, Integer.class)
+            String query = "select m.team from Member m";
+            List<String> resultList = em.createQuery(query, String.class)
                             .getResultList();
 
             resultList.forEach(m -> System.out.println(m.toString()));
