@@ -1,16 +1,10 @@
 package io.ggammu.study.jpa;
 
 import java.util.List;
-import java.util.concurrent.ForkJoinPool;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import org.hibernate.Hibernate;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -41,8 +35,8 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query = "select m from Member m where m.type = io.ggammu.study.jpa.MemberType.ADMIN";
-            List<Member> resultList = em.createQuery(query, Member.class)
+            String query = "select group_concat(m.username) from Member m";
+            List<Integer> resultList = em.createQuery(query, Integer.class)
                             .getResultList();
 
             resultList.forEach(m -> System.out.println(m.toString()));
