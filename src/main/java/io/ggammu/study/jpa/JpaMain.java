@@ -7,7 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 public class JpaMain {
-    public static void main(String[] args) {
+    public static void main(java.lang.String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("io.ggammu.study.jpa");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -22,20 +22,20 @@ public class JpaMain {
             member.setUsername("member 1");
             member.setAge(10);
             member.setType(MemberType.ADMIN);
-
             member.setTeam(team);
-
             em.persist(member);
 
-            System.out.println("team");
-            team.getMembers().forEach(m -> System.out.println(m.toString()));
-            System.out.println("member");
-            System.out.println(member.getTeam());
+            Member member1 = new Member();
+            member1.setUsername("member 2");
+            member1.setAge(20);
+            member1.setType(MemberType.ADMIN);
+            member1.setTeam(team);
+            em.persist(member1);
 
             em.flush();
             em.clear();
 
-            String query = "select m.team from Member m";
+            String query = "select m.username from Team t join t.members m";
             List<String> resultList = em.createQuery(query, String.class)
                             .getResultList();
 

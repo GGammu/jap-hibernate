@@ -4,7 +4,6 @@ import java.util.List;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
