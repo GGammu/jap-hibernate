@@ -37,7 +37,7 @@ public class JpaMain {
             em.persist(member2);
 
             Member member3 = new Member();
-            member3.setUsername("회원2");
+            member3.setUsername("회원3");
             member3.setAge(20);
             member3.setType(MemberType.ADMIN);
             member3.setTeam(team2);
