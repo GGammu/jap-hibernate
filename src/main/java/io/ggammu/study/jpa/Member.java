@@ -1,16 +1,5 @@
 package io.ggammu.study.jpa;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -19,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -47,13 +35,13 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MemberType type;
 
-    public void changeTeam(Team team) {
+    public void changeTeam() {
         this.team.getMembers().add(this);
     }
 
     public void setTeam(Team team) {
         this.team = team;
-        changeTeam(team);
+        changeTeam();
     }
 
     @Override
