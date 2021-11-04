@@ -1,6 +1,7 @@
 package io.ggammu.study.jpa;
 
 import java.util.List;
+import javax.lang.model.SourceVersion;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -46,18 +47,12 @@ public class JpaMain {
             em.flush();
             em.clear();
 
-            String query = "select t from Team t";
-            List<Team> resultList = em.createQuery(query, Team.class)
-                    .setFirstResult(0)
-                    .setMaxResults(2)
-                    .getResultList();
+            String query = "select m from Member m where m = :member";
+            Member findMember = em.createQuery(query, Member.class)
+                    .setParameter("member", member1)
+                    .getSingleResult();
 
-            for (Team team : resultList) {
-                System.out.println("team = " + team.getName());
-                for (Member member : team.getMembers()) {
-                    System.out.println("member.getUsername() = " + member.getUsername());
-                }
-            }
+            System.out.println("findMember = " + findMember);
 
             tx.commit();
         } catch (Exception e) {
