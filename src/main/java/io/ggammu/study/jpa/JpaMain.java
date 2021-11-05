@@ -33,24 +33,23 @@ public class JpaMain {
 
             Member member2 = new Member();
             member2.setUsername("회원2");
-            member2.setAge(20);
+            member2.setAge(10);
             member2.setType(MemberType.ADMIN);
             member2.setTeam(team1);
             em.persist(member2);
 
             Member member3 = new Member();
             member3.setUsername("회원3");
-            member3.setAge(20);
+            member3.setAge(10);
             member3.setType(MemberType.ADMIN);
             member3.setTeam(team2);
             em.persist(member3);
 
-            em.flush();
-            em.clear();
-
             int resultCount = em.createQuery("update Member m set m.age = 20")
                     .executeUpdate();
 
+            Member findMember = em.find(Member.class, member1.getId());
+            System.out.println("member1.getAge() = " + findMember.getAge());
             System.out.println("resultCount = " + resultCount);
 
             tx.commit();
